@@ -2,7 +2,7 @@ import express ,{type  Express} from "express";
 import { appConfig } from "./config/readers/config.js";
 import helmet from "helmet";
 import cors from "cors"
-import AppLogger from "./core/appLogger.js";
+import {appLogger} from "./core/appLogger.js";
 class App{
     private readonly app :Express;
     constructor(){
@@ -14,7 +14,7 @@ class App{
 
     private listen():void{
         this.app.listen(appConfig.app.port,async()=>{
-            AppLogger.info("SERVER",`App is running on port ${appConfig.app.port}`)
+            appLogger.info("SERVER",`App is running on port ${appConfig.app.port}`)
         })
     }
 }

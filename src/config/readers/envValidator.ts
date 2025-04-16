@@ -1,4 +1,4 @@
-import AppLogger from "@/core/appLogger.js";
+import {appLogger} from "@/core/appLogger.js";
 import dotenv from "dotenv"
 import { z } from "zod"
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
@@ -30,7 +30,7 @@ class EnvValidator {
     private validator() {
         const result = EnvValidator.envSchema.safeParse(process.env)
         if (!result.success) {
-            AppLogger.error("ENV_VALIDATOR", `Invalid environment variables ${result.error.errors
+            appLogger.error("ENV_VALIDATOR", `Invalid environment variables ${result.error.errors
                 .map((e) => `${e.path.join('.')}: ${e.message}`)
                 .join(', ')}`)
             process.exit(1)
